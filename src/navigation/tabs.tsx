@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {MainStack} from './main';
 import {ShopStack} from './shop';
 import {Image, StyleSheet} from 'react-native';
-import DrawerNavigator from './drawer';
 
 const homeIcon = require('../../assets/images/home.png');
 const homeIconOutline = require('../../assets/images/home-outline.png');
@@ -36,8 +36,8 @@ const TabsNavigator = () => {
         tabBarInactiveTintColor: '#212121',
       }}>
       <Tab.Screen
-        name="DrawerStack"
-        component={DrawerNavigator}
+        name="MainStack"
+        component={MainStack}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({focused}) => (
