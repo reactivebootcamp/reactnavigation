@@ -2,8 +2,17 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Home} from '../screens/home';
 import {About} from '../screens/about';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const Drawer = createDrawerNavigator();
+type DrawerRootParamList = {
+  Home: undefined;
+  About: undefined;
+};
+
+export type HomeProps = NativeStackScreenProps<DrawerRootParamList, 'Home'>;
+export type AboutProps = NativeStackScreenProps<DrawerRootParamList, 'About'>;
+
+const Drawer = createDrawerNavigator<DrawerRootParamList>();
 
 const DrawerNavigator = () => {
   return (
