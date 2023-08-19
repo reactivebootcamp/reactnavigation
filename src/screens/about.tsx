@@ -1,9 +1,5 @@
 import React from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../navigation/main';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-
-type AboutProps = NativeStackScreenProps<RootStackParamList, 'About'>;
 
 const styles = StyleSheet.create({
   safeAreaView: {
@@ -16,13 +12,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const About = ({route}: AboutProps) => {
-  const {name} = route.params || {};
-
+export const About = () => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.container}>
-        <Text>{name}</Text>
+        <Text>About</Text>
       </View>
     </SafeAreaView>
   );
