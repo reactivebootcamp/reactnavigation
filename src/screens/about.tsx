@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {AboutProps} from '../navigation/drawer';
 
 const styles = StyleSheet.create({
   safeAreaView: {
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const About = ({}: AboutProps) => {
+export const About = () => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.container}>

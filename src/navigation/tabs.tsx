@@ -1,24 +1,38 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {
-  BottomTabBarProps,
   createBottomTabNavigator,
+  BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
 import {ShopStack} from './shop';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import DrawerNavigator from './drawer';
-
-const homeIcon = require('../../assets/images/home.png');
-const homeIconOutline = require('../../assets/images/home-outline.png');
-const shopIcon = require('../../assets/images/shop.png');
-const shopIconOutline = require('../../assets/images/shop-outline.png');
+import HomeIcon from '../components/icons/home';
+import ShopIcon from '../components/icons/shop';
 
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: '#FCECC9',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
   icon: {
     width: 24,
     height: 24,
+  },
+  labelContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 15,
+  },
+  label: {
+    fontWeight: '400',
+    fontSize: 12,
   },
 });
 
@@ -29,24 +43,17 @@ const TabBar = ({
   insets,
 }: BottomTabBarProps) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        paddingBottom: insets.bottom,
-        backgroundColor: '#EBEBD3',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-      }}>
+    <View style={[styles.tabBar, {paddingBottom: insets.bottom}]}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
-        const label =
+        // TODO: not sure what I need to do here!!!
+        const label: string | undefined | any =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
             ? options.title
             : route.name;
         const isFocused = state.index === index;
-
         const onPress = () => {
           const event = navigation.emit({
             type: 'tabPress',
@@ -66,21 +73,34 @@ const TabBar = ({
           });
         };
 
+        const CustomIcon = () => {
+          switch (label) {
+            case 'Home':
+              return <HomeIcon width={20} height={20} color="#212121" />;
+            case 'Shop':
+              return <ShopIcon width={20} height={20} color="#212121" />;
+            default:
+              return null;
+          }
+        };
+
         return (
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
             onLongPress={onLongPress}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingVertical: 20,
-            }}>
-            <Text style={{color: isFocused ? '#673ab7' : '#222'}}>{label}</Text>
+            style={styles.labelContainer}
+            key={route.key}
+            onPress={onPress}>
+            <CustomIcon />
+            <Text
+              style={[
+                styles.label,
+                {color: isFocused ? '#2D3142' : '#EC5B70'},
+              ]}>
+              {label}
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -95,40 +115,19 @@ const TabsNavigator = () => {
       tabBar={props => <TabBar {...props} />}
       screenOptions={{
         headerShown: false,
-        // tabBarLabelStyle: {
-        //   fontWeight: '400',
-        //   fontSize: 11,
-        // },
-        // tabBarStyle: {
-        //   backgroundColor: '#fff',
-        // },
-        // tabBarActiveTintColor: '#EC5B70',
-        // tabBarInactiveTintColor: '#212121',
       }}>
       <Tab.Screen
         name="DrawerStack"
         component={DrawerNavigator}
         options={{
-          tabBarLabel: 'Home',
-          // tabBarIcon: ({focused}) => (
-          //   <Image
-          //     style={styles.icon}
-          //     source={focused ? homeIcon : homeIconOutline}
-          //   />
-          // ),
+          title: 'Home',
         }}
       />
       <Tab.Screen
         name="ShopStack"
         component={ShopStack}
         options={{
-          tabBarLabel: 'Shop',
-          // tabBarIcon: ({focused}) => (
-          //   <Image
-          //     style={styles.icon}
-          //     source={focused ? shopIcon : shopIconOutline}
-          //   />
-          // ),
+          title: 'Shop',
         }}
       />
     </Tab.Navigator>

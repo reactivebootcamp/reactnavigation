@@ -7,13 +7,15 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Keyboard,
   TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import {ShopStackParamList} from '../navigation/shop';
 
+const isAndroid = Platform.OS === 'android';
+
 const styles = StyleSheet.create({
-  keyboardAvoidingView: {
+  keyboardView: {
     flex: 1,
   },
   container: {
@@ -40,11 +42,9 @@ type CategoriesProps = NativeStackScreenProps<ShopStackParamList, 'Categories'>;
 const Categories = ({navigation}: CategoriesProps) => {
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.keyboardAvoidingView}>
-      <TouchableWithoutFeedback
-        style={styles.keyboardAvoidingView}
-        onPress={() => Keyboard.dismiss()}>
+      behavior={isAndroid ? 'height' : 'padding'}
+      style={styles.keyboardView}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Text>Categories</Text>
           <TouchableOpacity
