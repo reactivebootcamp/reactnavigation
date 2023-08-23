@@ -1,6 +1,5 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../navigation/main';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {RootDrawerParamList} from '../navigation/drawer';
 
-type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type HomeProps = NativeStackScreenProps<RootDrawerParamList, 'Home'>;
 
 const styles = StyleSheet.create({
   safeAreaView: {
@@ -40,7 +40,7 @@ export const Home = ({navigation}: HomeProps) => {
       <View style={styles.container}>
         <Text>Home</Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate('About', {name: 'Paul'})}
+          onPress={() => navigation.navigate('About')}
           style={styles.button}>
           <Text style={styles.buttonText}>Go to About</Text>
         </TouchableOpacity>

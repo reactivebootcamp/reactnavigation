@@ -3,6 +3,7 @@ import {RootNavigator} from './src/navigation';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {StyleSheet} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {AuthProvider} from './src/features/auth/context';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,11 +12,13 @@ const styles = StyleSheet.create({
 });
 function App(): JSX.Element {
   return (
-    <SafeAreaProvider>
-      <GestureHandlerRootView style={styles.container}>
-        <RootNavigator />
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+    <AuthProvider>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={styles.container}>
+          <RootNavigator />
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+    </AuthProvider>
   );
 }
 
