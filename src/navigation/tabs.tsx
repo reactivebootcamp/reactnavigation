@@ -47,8 +47,9 @@ const TabBar = ({
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         // TODO: not sure what I need to do here!!!
-        const label: string | undefined | any =
-          options.tabBarLabel !== undefined
+        const label: string =
+          options.tabBarLabel !== undefined &&
+          typeof options.tabBarLabel === 'string'
             ? options.tabBarLabel
             : options.title !== undefined
             ? options.title
