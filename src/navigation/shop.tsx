@@ -6,13 +6,7 @@ import Products from '../screens/products';
 import Product from '../screens/product';
 import {Platform, StyleSheet, TextInput, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-<<<<<<< HEAD
-import Search from '../components/icon/search';
-
-const isAndroid = Platform.OS === 'android';
-=======
 import Search from '../components/icons/search';
->>>>>>> c9e4b034643353bc7dcd2b2345e3ae729e5387ad
 
 export type ShopStackParamList = {
   Categories: undefined;
