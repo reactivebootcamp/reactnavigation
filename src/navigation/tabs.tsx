@@ -8,6 +8,8 @@ import {
 import {ShopStack} from './shop';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import DrawerNavigator from './drawer';
+import HomeIcon from '../components/icons/home';
+import ShopIcon from '../components/icons/shop';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,6 +73,17 @@ const TabBar = ({
           });
         };
 
+        const CustomIcon = () => {
+          switch (label) {
+            case 'Home':
+              return <HomeIcon width={20} height={20} color="#212121" />;
+            case 'Shop':
+              return <ShopIcon width={20} height={20} color="#212121" />;
+            default:
+              return null;
+          }
+        };
+
         return (
           <TouchableOpacity
             accessibilityRole="button"
@@ -80,6 +93,7 @@ const TabBar = ({
             style={styles.labelContainer}
             key={route.key}
             onPress={onPress}>
+            <CustomIcon />
             <Text
               style={[
                 styles.label,
