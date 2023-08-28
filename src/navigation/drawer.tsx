@@ -13,7 +13,9 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import Logout from '../components/icons/logout';
 import HomeIcon from '../components/icons/home';
 import AboutIcon from '../components/icons/about';
-import {useAuthentication} from '../features/auth/hooks/useAuthentication';
+// import {useAuthentication} from '../features/auth/hooks/useAuthentication';
+import {useAppDispatch} from '../store';
+import {signOut} from '../store/actions/auth';
 
 export type RootDrawerParamList = {
   Home: undefined;
@@ -66,9 +68,9 @@ const styles = StyleSheet.create({
 });
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
-  const {signOut} = useAuthentication();
+  const dispatch = useAppDispatch();
   const onHandlerSignOut = () => {
-    signOut();
+    dispatch(signOut());
   };
   return (
     <DrawerContentScrollView {...props}>
