@@ -1,4 +1,5 @@
 import React from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,7 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {HomeProps} from '../navigation/drawer';
+import {RootDrawerParamList} from '../navigation/drawer';
+
+type HomeProps = NativeStackScreenProps<RootDrawerParamList, 'Home'>;
 
 const styles = StyleSheet.create({
   safeAreaView: {

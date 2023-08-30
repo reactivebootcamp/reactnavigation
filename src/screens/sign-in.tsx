@@ -1,11 +1,12 @@
-import React from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {useAuthentication} from '../hooks/useAuthentication';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, Button, Alert} from 'react-native';
+import {useDispatch, useSelector} from '../store-v1';
+// import {signIn} from '../store-v1/actions/auth';
+import {AuthState} from '../store-v1/types';
+import {signIn} from '../store-v2/features/auth/auth.slices';
+// import {useAuthentication} from '../features/auth/hooks/useAuthentication';
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -13,18 +14,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SignIn = () => {
-  const {signIn} = useAuthentication();
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector<AuthState>(state => state.auth);
+  // const {signIn} = useAuthentication();
 
-  const onHandleSignIn = () => {
-    signIn('dawdawd@gmail.com', '12345678');
+  const onHandlerSignIn = () => {
+    // signIn({email: 'add@gmail.com', password: '12345678'});
+    dispatch(signIn({email: 'ladliawjd@gmail.com', password: '12345678'}));
   };
+
+  useEffect(() => {
+    if (auth.isError) {
+      Alert.alert('Error', auth.error);
+    }
+  }, [auth]);
+
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <View style={styles.container}>
-        <Text>Sign In</Text>
-        <Button title="Sign In" onPress={onHandleSignIn} />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Sign In</Text>
+      <Button title="Login" color="#EC5B70" onPress={onHandlerSignIn} />
+    </View>
   );
 };
+
+export default SignIn;

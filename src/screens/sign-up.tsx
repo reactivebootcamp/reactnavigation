@@ -1,10 +1,7 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -12,12 +9,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SignUp = () => {
+const SignUp = () => {
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <View style={styles.container}>
-        <Text>Sign Up</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Sign Up</Text>
+    </View>
   );
 };
+
+export default SignUp;
