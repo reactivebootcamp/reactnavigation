@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Button, Alert} from 'react-native';
-import {useDispatch, useSelector} from '../store';
-import {signIn} from '../store/actions/auth';
-import {AuthState} from '../store/types';
+import {useDispatch, useSelector} from '../store-v1';
+// import {signIn} from '../store-v1/actions/auth';
+import {AuthState} from '../store-v1/types';
+import {signIn} from '../store-v2/features/auth/auth.slices';
 // import {useAuthentication} from '../features/auth/hooks/useAuthentication';
 
 const styles = StyleSheet.create({
@@ -25,7 +26,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (auth.isError) {
-      Alert.alert('Error', 'Something went wrong');
+      Alert.alert('Error', auth.error);
     }
   }, [auth]);
 

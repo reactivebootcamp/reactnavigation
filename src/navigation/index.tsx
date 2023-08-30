@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import TabsNavigator from './tabs';
 import {AuthStack} from './auth';
-import {useSelector} from '../store';
+import {useSelector} from '../store-v1';
 // import {useAuth} from '../features/auth/context';
 
 export const RootNavigator = () => {

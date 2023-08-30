@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 // import {AuthProvider} from './src/features/auth/context';
 import {Provider} from 'react-redux';
-import {store} from './src/store';
+import {store} from './src/store-v2';
 
 const styles = StyleSheet.create({
   container: {

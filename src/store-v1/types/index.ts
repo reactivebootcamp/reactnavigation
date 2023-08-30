@@ -43,7 +43,7 @@ export type AuthState = {
   } | null;
   isLoading: boolean;
   isError: boolean;
-  error: string | null;
+  error: string | '';
 };
 
 export type RootState = {

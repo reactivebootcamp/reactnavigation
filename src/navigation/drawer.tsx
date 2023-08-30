@@ -14,8 +14,9 @@ import Logout from '../components/icons/logout';
 import HomeIcon from '../components/icons/home';
 import AboutIcon from '../components/icons/about';
 // import {useAuthentication} from '../features/auth/hooks/useAuthentication';
-import {useAppDispatch} from '../store';
-import {signOut} from '../store/actions/auth';
+import {useDispatch} from '../store-v1';
+import {signOut} from '../store-v2/features/auth/auth.slices';
+// import {signOut} from '../store-v1/actions/auth';
 
 export type RootDrawerParamList = {
   Home: undefined;
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
 });
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const onHandlerSignOut = () => {
     dispatch(signOut());
   };
